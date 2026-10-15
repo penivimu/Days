@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nariz</title>
+<style>
+    body {
+        margin: 0;
+        background: #101014;
+        color: white;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+    }
+    main {
+        width: 85%;
+        max-width: 400px;
+    }
+    h1 {
+        font-size: 90px;
+        color: #e5bd70;
+        margin: 0;
+    }
+    .porcentaje {
+        font-size: 25px;
+        margin-top: 40px;
+    }
+    .nariz {
+        font-size: 65px;
+        margin: 30px;
+    }
+    .barra {
+        background: #333;
+        height: 18px;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    #progreso {
+        width: 0%;
+        height: 100%;
+        background: #e5bd70;
+    }
+</style>
+</head>
+<body>
+<main>
+    <h1 id="dias">...</h1>
+    <p>DÍAS HASTA EL 7 DE NOVIEMBRE</p>
+    <div class="porcentaje" id="porcentaje">
+        Calculando progreso...
+    </div>
+    <div class="barra">
+        <div id="progreso"></div>
+    </div>
+    <div class="nariz">👃</div>
+</main>
+<script>
+(function () {
+    var ahora = new Date();
+    var hoy = new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate());
+    var inicio = new Date(2026, 7, 21);
+    var final = new Date(2026, 10, 7);
+    var dias = Math.max(0, Math.ceil((final - hoy) / 86400000));
+    var porcentaje = Math.round(
+        Math.max(0, Math.min(1, (hoy - inicio) / (final - inicio))) * 100
+    );
+    document.getElementById("dias").innerHTML = dias;
+    document.getElementById("porcentaje").innerHTML =
+        "Se ha completado el " + porcentaje + "%";
+    document.getElementById("progreso").style.width = porcentaje + "%";
+})();
+</script>
+</body>
+</html>
