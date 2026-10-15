@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nariz</title>
+    <style>
+        body {
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20vh;
+        }
+        h1 { font-size: 90px; color: gold; }
+        p { font-size: 24px; }
+        .barra {
+            width: 80%;
+            height: 20px;
+            background: #444;
+            margin: 20px auto;
+            border-radius: 20px;
+        }
+        #relleno {
+            height: 100%;
+            background: gold;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="dias">Cargando...</h1>
+    <p>days until</p>
+    <p id="porcentaje"></p>
+    <div class="barra">
+        <div id="relleno"></div>
+    </div>
+    <p>👃</p>
+    <script>
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        const inicio = new Date(2026, 7, 21);
+        const final = new Date(2026, 10, 7);
+        const dias = Math.max(0, Math.ceil((final - hoy) / 86400000));
+        const progreso = Math.max(0, Math.min(100,
+            Math.round((hoy - inicio) / (final - inicio) * 100)
+        ));
+        document.getElementById("dias").textContent = dias;
+        document.getElementById("porcentaje").textContent =
+            "Se ha completado el " + progreso + "%";
+        document.getElementById("relleno").style.width = progreso + "%";
+    </script>
+</body>
+</html>
